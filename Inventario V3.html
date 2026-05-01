@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventario del Hogar</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+body{background:#f5f5f3;color:#1a1a18;font-size:15px;min-height:100vh}
+header{background:#fff;border-bottom:1px solid #e0e0d8;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+header h1{font-size:18px;font-weight:500}
+header span{font-size:12px;color:#888}
+.tabs{display:flex;border-bottom:1px solid #e0e0d8;background:#fff;padding:0 24px}
+.tab{padding:10px 18px;border:none;background:none;cursor:pointer;font-size:14px;color:#888;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab.active{color:#1a1a18;font-weight:500;border-bottom:2px solid #1a1a18}
+.main{padding:20px 24px;max-width:980px;margin:0 auto}
+.row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
+input,select{padding:7px 10px;border:1px solid #d0d0c8;border-radius:8px;font-size:13px;background:#fff;color:#1a1a18;outline:none}
+input:focus,select:focus{border-color:#888}
+.btn{padding:7px 14px;border:1px solid #d0d0c8;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;color:#1a1a18}
+.btn:hover{background:#f0f0ee}
+.btn-primary{padding:8px 16px;border:none;border-radius:8px;background:#1d9e75;cursor:pointer;font-size:13px;color:#fff;font-weight:500}
+.btn-primary:hover{background:#178f68}
+.btn-danger{padding:6px 11px;border:1px solid #f09595;border-radius:8px;background:#fff;cursor:pointer;font-size:12px;color:#a32d2d}
+.btn-sm{padding:5px 10px;border:1px solid #d0d0c8;border-radius:6px;background:#fff;cursor:pointer;font-size:12px;color:#1a1a18}
+.btn-sm:hover{background:#f0f0ee}
+.btn-teal{padding:5px 10px;border:none;border-radius:6px;background:#1d9e75;cursor:pointer;font-size:12px;color:#fff}
+.btn-scan{padding:7px 13px;border:1px solid #378add;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;color:#378add;display:flex;align-items:center;gap:5px}
+.btn-scan:hover{background:#e6f1fb}
+.card{background:#fff;border:1px solid #e0e0d8;border-radius:12px;padding:14px 18px;margin-bottom:8px}
+.badge{display:inline-block;font-size:11px;padding:2px 9px;border-radius:20px;font-weight:500}
+.badge-basico{background:#eaf3de;color:#3b6d11}
+.badge-adicional{background:#faeeda;color:#854f0b}
+.badge-lugar{background:#f0f0ee;color:#555;font-size:11px;padding:2px 9px;border-radius:20px;display:inline-block}
+.badge-tienda{background:#e6f1fb;color:#185fa5;font-size:11px;padding:2px 9px;border-radius:20px;display:inline-block}
+.price-up{color:#a32d2d;font-weight:500}
+.price-down{color:#0f6e56;font-weight:500}
+.price-eq{color:#888}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:20px}
+.metric{background:#fff;border:1px solid #e0e0d8;border-radius:8px;padding:12px 16px}
+.metric-label{font-size:11px;color:#888;margin-bottom:4px}
+.metric-value{font-size:22px;font-weight:500}
+.chart-card{background:#fff;border:1px solid #e0e0d8;border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.chart-title{font-size:14px;font-weight:500;margin-bottom:4px}
+.chart-sub{font-size:12px;color:#888;margin-bottom:14px}
+.legend{display:flex;gap:14px;margin-top:10px;font-size:12px;color:#888}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend-dot{width:10px;height:10px;border-radius:2px;display:inline-block}
+.overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);z-index:100;align-items:center;justify-content:center}
+.overlay.open{display:flex}
+.modal{background:#fff;border-radius:12px;padding:24px;width:480px;max-width:96vw;border:1px solid #d0d0c8;max-height:92vh;overflow-y:auto}
+.modal h3{font-size:16px;font-weight:500;margin-bottom:4px}
+.modal-sub{font-size:12px;color:#888;margin-bottom:10px}
+.form-label{display:block;font-size:12px;color:#888;margin-top:12px;margin-bottom:4px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.full{width:100%}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}
+.empty{color:#888;font-size:14px;padding:16px 0}
+.prod-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.prod-info{flex:1}
+.prod-name-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:6px}
+.prod-name{font-weight:500;font-size:15px}
+.prod-details{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:#444}
+.prod-cod{font-size:11px;color:#aaa;margin-top:4px}
+.prod-actions{display:flex;gap:6px;flex-shrink:0;align-items:flex-start;flex-wrap:wrap}
+.count{font-size:13px;color:#888;margin-left:auto;align-self:center}
+.hist-section{margin-top:10px;border-top:1px solid #f0f0ee;padding-top:10px}
+.hist-title{font-size:12px;color:#888;margin-bottom:6px}
+.hist-table{width:100%;border-collapse:collapse;font-size:12px}
+.hist-table th{text-align:left;color:#aaa;font-weight:400;padding:3px 6px;border-bottom:1px solid #f0f0ee}
+.hist-table td{padding:4px 6px;border-bottom:1px solid #f8f8f6;color:#444}
+.hist-table tr:last-child td{border-bottom:none}
+.hist-up{color:#a32d2d}
+.hist-down{color:#0f6e56}
+.add-compra-row{display:flex;gap:6px;margin-top:8px;align-items:flex-end;flex-wrap:wrap}
+.add-compra-row input{font-size:12px;padding:5px 8px}
+#scanner-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+#scanner-overlay.open{display:flex}
+#scanner-container{width:320px;max-width:90vw;border-radius:12px;overflow:hidden;background:#000}
+#scanner-status{color:#fff;font-size:14px;text-align:center;max-width:300px}
+#scanner-close{padding:10px 24px;border:2px solid #fff;border-radius:8px;background:transparent;color:#fff;cursor:pointer;font-size:14px}
+#toast{position:fixed;bottom:24px;right:24px;background:#1d9e75;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;display:none;z-index:300}
+.import-note{font-size:12px;color:#888;margin-top:6px}
+.divider{height:1px;background:#f0f0ee;margin:10px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1>Inventario del Hogar</h1>
+  <span>Pesos mexicanos (MXN) — datos guardados en este equipo</span>
+</header>
+<div class="tabs">
+  <button class="tab active" onclick="setVista('inventario')">Inventario</button>
+  <button class="tab" onclick="setVista('graficas')">Gráficas</button>
+</div>
+<div class="main">
+  <div id="vista-inventario">
+    <div class="row" style="margin-top:4px">
+      <input id="busqueda" placeholder="Buscar por nombre, tienda o código…" oninput="renderInventario()" style="flex:2;min-width:180px">
+      <select id="filtro-tipo" onchange="renderInventario()" style="min-width:110px">
+        <option>Todos</option><option>Básico</option><option>Adicional</option>
+      </select>
+      <select id="filtro-lugar" onchange="renderInventario()" style="min-width:120px">
+        <option>Todos</option><option>Supermercado</option><option>Internet</option><option>Mercado local</option><option>Tienda</option>
+      </select>
+      <select id="filtro-cat" onchange="renderInventario()" style="min-width:120px">
+        <option>Todos</option><option>Limpieza</option><option>Alimentos</option><option>Higiene personal</option><option>Bebidas</option><option>Cuidado del hogar</option><option>Otro</option>
+      </select>
+    </div>
+    <div class="row">
+      <button class="btn-primary" onclick="abrirModal()">+ Agregar producto</button>
+      <button class="btn-scan" onclick="abrirScanner()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="5" height="5"/><rect x="16" y="3" width="5" height="5"/><rect x="3" y="16" width="5" height="5"/><line x1="21" y1="12" x2="12" y2="12"/><line x1="12" y1="21" x2="12" y2="12"/></svg>
+        Escanear código
+      </button>
+      <button class="btn" onclick="document.getElementById('import-csv').click()">Importar Excel (.csv)</button>
+      <input type="file" id="import-csv" accept=".csv" style="display:none" onchange="importarCSV(event)">
+      <button class="btn" onclick="exportCSV()">Exportar Excel (.csv)</button>
+      <span class="count" id="count-label"></span>
+    </div>
+    <div id="lista-productos"></div>
+  </div>
+
+  <div id="vista-graficas" style="display:none">
+    <div class="metric-grid" id="metricas"></div>
+    <div class="chart-card">
+      <div class="chart-title">Gasto mensual total (MXN)</div>
+      <div style="position:relative;height:220px"><canvas id="chart-mensual" role="img" aria-label="Gasto mensual acumulado"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Variación de precios por producto</div>
+      <div class="chart-sub">Comparado con la compra anterior (%)</div>
+      <div style="position:relative" id="chart-var-wrap"><canvas id="chart-variacion" role="img" aria-label="Variación de precio por producto"></canvas></div>
+      <div class="legend">
+        <span><span class="legend-dot" style="background:#e24b4a"></span>Subió</span>
+        <span><span class="legend-dot" style="background:#1d9e75"></span>Bajó o igual</span>
+      </div>
+    </div>
+    <div id="historiales"></div>
+  </div>
+</div>
+
+<!-- Modal producto -->
+<div class="overlay" id="overlay" onclick="cerrarModalClick(event)">
+  <div class="modal">
+    <h3 id="modal-title">Agregar producto</h3>
+    <p class="modal-sub">Completa los datos del producto</p>
+
+    <label class="form-label">Nombre del producto</label>
+    <input class="full" id="f-nombre" placeholder="Ej. Jabón líquido">
+
+    <label class="form-label">Código de barras (opcional)</label>
+    <div style="display:flex;gap:6px">
+      <input style="flex:1" id="f-codigo" placeholder="Ej. 7501234567890" inputmode="numeric">
+      <button class="btn-scan" onclick="abrirScannerModal()" title="Escanear código">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="5" height="5"/><rect x="16" y="3" width="5" height="5"/><rect x="3" y="16" width="5" height="5"/><line x1="21" y1="12" x2="12" y2="12"/><line x1="12" y1="21" x2="12" y2="12"/></svg>
+        Escanear
+      </button>
+    </div>
+
+    <div class="form-row">
+      <div><label class="form-label">Categoría</label>
+        <select class="full" id="f-cat">
+          <option>Limpieza</option><option>Alimentos</option><option>Higiene personal</option><option>Bebidas</option><option>Cuidado del hogar</option><option>Otro</option>
+        </select>
+      </div>
+      <div><label class="form-label">Tipo de lugar</label>
+        <select class="full" id="f-lugar" onchange="actualizarPlaceholderTienda()">
+          <option>Supermercado</option><option>Internet</option><option>Mercado local</option><option>Tienda</option>
+        </select>
+      </div>
+    </div>
+
+    <label class="form-label">Nombre de la tienda</label>
+    <input class="full" id="f-tienda" placeholder="Ej. Walmart, Chedraui, Amazon…">
+
+    <div class="form-row">
+      <div><label class="form-label">Tipo de producto</label>
+        <select class="full" id="f-tipo"><option>Básico</option><option>Adicional</option></select>
+      </div>
+      <div><label class="form-label">Unidad</label>
+        <select class="full" id="f-unidad">
+          <option>litros</option><option>kg</option><option>piezas</option><option>ml</option><option>g</option><option>m</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div><label class="form-label">Cantidad en presentación</label>
+        <input class="full" id="f-cantidad" type="number" min="0.001" step="0.001" placeholder="Ej. 0.240">
+      </div>
+      <div><label class="form-label">Precio actual (MXN)</label>
+        <input class="full" id="f-precio" type="number" min="0" step="0.01" placeholder="0.00">
+      </div>
+    </div>
+
+    <label class="form-label">Fecha de esta compra</label>
+    <input class="full" id="f-fecha" type="date">
+
+    <div class="modal-actions">
+      <button class="btn" onclick="cerrarModal()">Cancelar</button>
+      <button class="btn-primary" onclick="guardar()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Scanner overlay -->
+<div id="scanner-overlay">
+  <div id="scanner-status">Apunta la cámara al código de barras</div>
+  <div id="scanner-container"></div>
+  <button id="scanner-close" onclick="cerrarScanner()">Cerrar cámara</button>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const STORAGE_KEY='inventario_hogar_v3';
+let productos=[];
+let editandoId=null;
+let chartMensual=null,chartVariacion=null,chartHistoriales=[];
+let expandidos={};
+let scanner=null;
+let scannerModoModal=false;
+
+function hoy(){return new Date().toISOString().slice(0,10);}
+function fmtFecha(iso){if(!iso)return'—';const[y,m,d]=iso.split('-');return`${d}/${m}/${y}`;}
+
+function cargar(){
+  try{
+    const d=localStorage.getItem(STORAGE_KEY);
+    if(d){productos=JSON.parse(d);return;}
+    productos=[
+      {id:1,nombre:'Jabón líquido',categoria:'Limpieza',lugar:'Supermercado',tienda:'Chedraui',tipo:'Básico',unidad:'litros',cantidad:6.8,precioActual:89,precioAnterior:79,codigo:'7501234567890',historial:[{fecha:'2024-01-10',precio:75},{fecha:'2024-02-08',precio:79},{fecha:'2024-03-07',precio:89}]},
+      {id:2,nombre:'Arroz',categoria:'Alimentos',lugar:'Mercado local',tienda:'Mercado Medellín',tipo:'Básico',unidad:'kg',cantidad:5,precioActual:52,precioAnterior:48,codigo:'7509876543210',historial:[{fecha:'2024-01-15',precio:45},{fecha:'2024-02-14',precio:48},{fecha:'2024-03-13',precio:52}]},
+      {id:3,nombre:'Shampoo',categoria:'Higiene personal',lugar:'Internet',tienda:'Amazon',tipo:'Adicional',unidad:'ml',cantidad:750,precioActual:120,precioAnterior:135,codigo:'7501111111111',historial:[{fecha:'2024-01-20',precio:130},{fecha:'2024-02-19',precio:135},{fecha:'2024-03-18',precio:120}]},
+      {id:4,nombre:'Leche',categoria:'Bebidas',lugar:'Tienda',tienda:'OXXO',tipo:'Básico',unidad:'litros',cantidad:1,precioActual:28,precioAnterior:26,codigo:'7502222222222',historial:[{fecha:'2024-01-05',precio:24},{fecha:'2024-02-04',precio:26},{fecha:'2024-03-05',precio:28}]}
+    ];
+    guardarLocal();
+  }catch(e){productos=[];}
+}
+
+function guardarLocal(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(productos));}catch(e){}}
+
+function fmt(v){return'$'+Number(v).toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2});}
+
+function precioUnitario(p){
+  const pu=p.precioActual/p.cantidad;
+  const u=p.unidad==='litros'?'L':p.unidad==='piezas'?'pieza':p.unidad;
+  return fmt(pu)+' / '+u;
+}
+
+function nextId(){return productos.length?Math.max(...productos.map(p=>p.id))+1:1;}
+
+let vistaActual='inventario';
+function setVista(v){
+  vistaActual=v;
+  document.getElementById('vista-inventario').style.display=v==='inventario'?'':'none';
+  document.getElementById('vista-graficas').style.display=v==='graficas'?'':'none';
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',(i===0&&v==='inventario')||(i===1&&v==='graficas')));
+  if(v==='graficas')renderGraficas();
+}
+
+function filtrados(){
+  const b=document.getElementById('busqueda').value.toLowerCase();
+  const ft=document.getElementById('filtro-tipo').value;
+  const fl=document.getElementById('filtro-lugar').value;
+  const fc=document.getElementById('filtro-cat').value;
+  return productos.filter(p=>{
+    if(ft!=='Todos'&&p.tipo!==ft)return false;
+    if(fl!=='Todos'&&p.lugar!==fl)return false;
+    if(fc!=='Todos'&&p.categoria!==fc)return false;
+    if(b&&!p.nombre.toLowerCase().includes(b)&&!(p.codigo||'').includes(b)&&!(p.tienda||'').toLowerCase().includes(b))return false;
+    return true;
+  });
+}
+
+function renderInventario(){
+  const lista=filtrados();
+  document.getElementById('count-label').textContent=lista.length+' producto'+(lista.length!==1?'s':'');
+  const el=document.getElementById('lista-productos');
+  if(!lista.length){el.innerHTML='<p class="empty">No se encontraron productos.</p>';return;}
+  el.innerHTML=lista.map(p=>{
+    const diff=p.precioActual-p.precioAnterior;
+    const tend=diff>0?'up':diff<0?'down':'eq';
+    const tendHTML=tend==='up'?`<span class="price-up">&#9650; ${fmt(diff)}</span>`:tend==='down'?`<span class="price-down">&#9660; ${fmt(Math.abs(diff))}</span>`:'<span class="price-eq">—</span>';
+    const ultimaFecha=p.historial&&p.historial.length?fmtFecha(p.historial[p.historial.length-1].fecha):'—';
+    const exp=expandidos[p.id];
+    return`<div class="card" id="card-${p.id}">
+      <div class="prod-row">
+        <div class="prod-info">
+          <div class="prod-name-row">
+            <span class="prod-name">${p.nombre}</span>
+            <span class="badge badge-${p.tipo==='Básico'?'basico':'adicional'}">${p.tipo}</span>
+            <span class="badge-lugar">${p.lugar}</span>
+            ${p.tienda?`<span class="badge-tienda">${p.tienda}</span>`:''}
+            <span class="badge-lugar">${p.categoria}</span>
+          </div>
+          <div class="prod-details">
+            <span>Precio actual: <b>${fmt(p.precioActual)}</b> ${tendHTML}</span>
+            <span>Anterior: <b>${fmt(p.precioAnterior)}</b></span>
+            <span>Por unidad: <b>${precioUnitario(p)}</b></span>
+            <span>Presentación: <b>${p.cantidad} ${p.unidad}</b></span>
+            <span>Última compra: <b>${ultimaFecha}</b></span>
+          </div>
+          ${p.codigo?`<div class="prod-cod">Cód: ${p.codigo}</div>`:''}
+        </div>
+        <div class="prod-actions">
+          <button class="btn-sm" onclick="toggleHistorial(${p.id})">${exp?'Ocultar':'Ver historial'}</button>
+          <button class="btn-sm" onclick="abrirEditar(${p.id})">Editar</button>
+          <button class="btn-danger" onclick="eliminar(${p.id})">Eliminar</button>
+        </div>
+      </div>
+      <div id="hist-${p.id}">${exp?renderHistorial(p):''}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderHistorial(p){
+  const hist=[...(p.historial||[])].sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  const rows=hist.map((h,i)=>{
+    let cambio='';
+    if(i>0){const d=h.precio-hist[i-1].precio;if(d>0)cambio=`<span class="hist-up">&#9650; ${fmt(d)}</span>`;else if(d<0)cambio=`<span class="hist-down">&#9660; ${fmt(Math.abs(d))}</span>`;else cambio='<span style="color:#aaa">—</span>';}
+    return`<tr><td>${fmtFecha(h.fecha)}</td><td>${fmt(h.precio)}</td><td>${fmt(h.precio/p.cantidad)} / ${p.unidad==='litros'?'L':p.unidad==='piezas'?'pieza':p.unidad}</td><td>${cambio}</td><td><button class="btn-danger" style="padding:2px 7px;font-size:11px" onclick="eliminarCompra(${p.id},'${h.fecha}',${h.precio})">×</button></td></tr>`;
+  }).join('');
+  return`<div class="hist-section">
+    <div class="hist-title">Historial de compras</div>
+    <table class="hist-table">
+      <thead><tr><th>Fecha</th><th>Precio total</th><th>Precio unitario</th><th>Cambio</th><th></th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="add-compra-row">
+      <div><div style="font-size:11px;color:#aaa;margin-bottom:3px">Fecha</div><input type="date" id="nc-fecha-${p.id}" value="${hoy()}" style="width:140px"></div>
+      <div><div style="font-size:11px;color:#aaa;margin-bottom:3px">Precio (MXN)</div><input type="number" id="nc-precio-${p.id}" min="0" step="0.01" placeholder="0.00" style="width:110px"></div>
+      <button class="btn-teal" onclick="agregarCompra(${p.id})">+ Agregar compra</button>
+    </div>
+  </div>`;
+}
+
+function toggleHistorial(id){
+  expandidos[id]=!expandidos[id];
+  const p=productos.find(x=>x.id===id);
+  if(!p)return;
+  document.getElementById('hist-'+id).innerHTML=expandidos[id]?renderHistorial(p):'';
+  const card=document.getElementById('card-'+id);
+  const btn=card?card.querySelector('.btn-sm'):null;
+  if(btn)btn.textContent=expandidos[id]?'Ocultar':'Ver historial';
+}
+
+function agregarCompra(id){
+  const fechaEl=document.getElementById('nc-fecha-'+id);
+  const precioEl=document.getElementById('nc-precio-'+id);
+  const fecha=fechaEl.value;
+  const precio=parseFloat(precioEl.value);
+  if(!fecha||isNaN(precio)||precio<=0){toast('Ingresa fecha y precio válidos');return;}
+  productos=productos.map(p=>{
+    if(p.id!==id)return p;
+    const hist=[...(p.historial||[])].filter(h=>h.fecha!==fecha);
+    hist.push({fecha,precio});
+    hist.sort((a,b)=>a.fecha.localeCompare(b.fecha));
+    const prev=hist.length>1?hist[hist.length-2].precio:precio;
+    return{...p,precioAnterior:prev,precioActual:precio,historial:hist};
+  });
+  guardarLocal();
+  const p=productos.find(x=>x.id===id);
+  if(expandidos[id]&&p)document.getElementById('hist-'+id).innerHTML=renderHistorial(p);
+  renderInventario();
+  toast('Compra registrada');
+}
+
+function eliminarCompra(id,fecha,precio){
+  if(!confirm('¿Eliminar esta compra del historial?'))return;
+  productos=productos.map(p=>{
+    if(p.id!==id)return p;
+    const hist=[...(p.historial||[])].filter(h=>!(h.fecha===fecha&&h.precio===precio));
+    hist.sort((a,b)=>a.fecha.localeCompare(b.fecha));
+    const last=hist[hist.length-1];
+    const prev=hist.length>1?hist[hist.length-2].precio:(last?last.precio:p.precioActual);
+    return{...p,precioActual:last?last.precio:p.precioActual,precioAnterior:prev,historial:hist};
+  });
+  guardarLocal();
+  const p=productos.find(x=>x.id===id);
+  if(expandidos[id]&&p)document.getElementById('hist-'+id).innerHTML=renderHistorial(p);
+  renderInventario();
+  toast('Compra eliminada');
+}
+
+function actualizarPlaceholderTienda(){
+  const lugar=document.getElementById('f-lugar').value;
+  const placeholders={Supermercado:'Ej. Walmart, Chedraui, La Comer…',Internet:'Ej. Amazon, MercadoLibre, Rappi…','Mercado local':'Ej. Mercado Medellín, Mercado Roma…',Tienda:'Ej. OXXO, 7-Eleven, farmacia…'};
+  document.getElementById('f-tienda').placeholder=placeholders[lugar]||'Nombre de la tienda';
+}
+
+function abrirModal(){
+  editandoId=null;
+  document.getElementById('modal-title').textContent='Agregar producto';
+  ['nombre','codigo','cantidad','precio','tienda'].forEach(f=>{const el=document.getElementById('f-'+f);if(el)el.value='';});
+  document.getElementById('f-fecha').value=hoy();
+  document.getElementById('f-cat').value='Limpieza';
+  document.getElementById('f-lugar').value='Supermercado';
+  document.getElementById('f-tipo').value='Básico';
+  document.getElementById('f-unidad').value='litros';
+  actualizarPlaceholderTienda();
+  document.getElementById('overlay').classList.add('open');
+}
+
+function abrirEditar(id){
+  const p=productos.find(x=>x.id===id);if(!p)return;
+  editandoId=id;
+  document.getElementById('modal-title').textContent='Editar producto';
+  document.getElementById('f-nombre').value=p.nombre;
+  document.getElementById('f-codigo').value=p.codigo||'';
+  document.getElementById('f-cat').value=p.categoria;
+  document.getElementById('f-lugar').value=p.lugar;
+  document.getElementById('f-tienda').value=p.tienda||'';
+  document.getElementById('f-tipo').value=p.tipo;
+  document.getElementById('f-unidad').value=p.unidad;
+  document.getElementById('f-cantidad').value=p.cantidad;
+  document.getElementById('f-precio').value=p.precioActual;
+  document.getElementById('f-fecha').value=hoy();
+  actualizarPlaceholderTienda();
+  document.getElementById('overlay').classList.add('open');
+}
+
+function cerrarModal(){document.getElementById('overlay').classList.remove('open');}
+function cerrarModalClick(e){if(e.target===document.getElementById('overlay'))cerrarModal();}
+
+function guardar(){
+  const nombre=document.getElementById('f-nombre').value.trim();
+  const precioStr=document.getElementById('f-precio').value;
+  if(!nombre||!precioStr){toast('Completa nombre y precio');return;}
+  const precio=parseFloat(precioStr);
+  const cantidad=parseFloat(document.getElementById('f-cantidad').value)||1;
+  const fecha=document.getElementById('f-fecha').value||hoy();
+  const tienda=document.getElementById('f-tienda').value.trim();
+  if(editandoId){
+    productos=productos.map(p=>{
+      if(p.id!==editandoId)return p;
+      const hist=[...(p.historial||[])].filter(h=>h.fecha!==fecha);
+      hist.push({fecha,precio});
+      hist.sort((a,b)=>a.fecha.localeCompare(b.fecha));
+      const prev=hist.length>1?hist[hist.length-2].precio:p.precioAnterior;
+      return{...p,nombre,codigo:document.getElementById('f-codigo').value.trim(),categoria:document.getElementById('f-cat').value,lugar:document.getElementById('f-lugar').value,tienda,tipo:document.getElementById('f-tipo').value,unidad:document.getElementById('f-unidad').value,cantidad,precioAnterior:prev,precioActual:precio,historial:hist};
+    });
+  }else{
+    productos.push({id:nextId(),nombre,codigo:document.getElementById('f-codigo').value.trim(),categoria:document.getElementById('f-cat').value,lugar:document.getElementById('f-lugar').value,tienda,tipo:document.getElementById('f-tipo').value,unidad:document.getElementById('f-unidad').value,cantidad,precioActual:precio,precioAnterior:precio,historial:[{fecha,precio}]});
+  }
+  guardarLocal();cerrarModal();renderInventario();
+  toast(editandoId?'Producto actualizado':'Producto agregado');
+}
+
+function eliminar(id){
+  if(!confirm('¿Eliminar este producto?'))return;
+  productos=productos.filter(p=>p.id!==id);
+  guardarLocal();renderInventario();toast('Producto eliminado');
+}
+
+// --- SCANNER ---
+function abrirScanner(){scannerModoModal=false;_iniciarScanner();}
+function abrirScannerModal(){scannerModoModal=true;_iniciarScanner();}
+
+function _iniciarScanner(){
+  document.getElementById('scanner-overlay').classList.add('open');
+  document.getElementById('scanner-status').textContent='Iniciando cámara…';
+  if(scanner){
+    try{scanner.stop().catch(()=>{});}catch(e){}
+    scanner=null;
+  }
+  scanner=new Html5Qrcode('scanner-container');
+  Html5Qrcode.getCameras().then(cams=>{
+    if(!cams||!cams.length){document.getElementById('scanner-status').textContent='No se encontró cámara en este dispositivo.';return;}
+    const camId=cams.length>1?cams[1].id:cams[0].id;
+    document.getElementById('scanner-status').textContent='Apunta la cámara al código de barras';
+    scanner.start(camId,{fps:12,qrbox:{width:240,height:160}},codigo=>{
+      cerrarScanner();
+      if(scannerModoModal){
+        document.getElementById('f-codigo').value=codigo;
+        document.getElementById('overlay').classList.add('open');
+        toast('Código escaneado: '+codigo);
+      }else{
+        abrirModal();
+        setTimeout(()=>{document.getElementById('f-codigo').value=codigo;},100);
+        toast('Código: '+codigo);
+      }
+    },()=>{}).catch(err=>{
+      document.getElementById('scanner-status').textContent='No se pudo acceder a la cámara. Verifica los permisos.';
+      console.error(err);
+    });
+  }).catch(()=>{document.getElementById('scanner-status').textContent='No se pudo acceder a la cámara. Verifica los permisos en tu navegador.';});
+}
+
+function cerrarScanner(){
+  document.getElementById('scanner-overlay').classList.remove('open');
+  if(scanner){try{scanner.stop().then(()=>{scanner.clear();scanner=null;}).catch(()=>{scanner=null;});}catch(e){scanner=null;}}
+}
+
+// --- IMPORTAR CSV ---
+function importarCSV(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const text=e.target.result.replace(/^\uFEFF/,'');
+    const lines=text.split(/\r?\n/).filter(l=>l.trim());
+    if(lines.length<2){toast('El archivo no tiene datos');return;}
+    const headers=parseCsvRow(lines[0]).map(h=>h.trim().toLowerCase());
+    const idxNombre=headers.indexOf('nombre');
+    const idxCat=headers.indexOf('categoría')||headers.indexOf('categoria');
+    const idxLugar=headers.indexOf('lugar');
+    const idxTienda=headers.indexOf('tienda');
+    const idxTipo=headers.indexOf('tipo');
+    const idxUnidad=headers.indexOf('unidad');
+    const idxCant=headers.indexOf('cantidad');
+    const idxPrecio=headers.findIndex(h=>h.includes('precio actual'));
+    const idxCodigo=headers.indexOf('código')||headers.indexOf('codigo');
+    if(idxNombre<0||idxPrecio<0){toast('El CSV no tiene las columnas requeridas (Nombre, Precio actual)');return;}
+    let agregados=0,omitidos=0;
+    for(let i=1;i<lines.length;i++){
+      const cols=parseCsvRow(lines[i]);
+      const nombre=(cols[idxNombre]||'').trim();
+      const precio=parseFloat(cols[idxPrecio])||0;
+      if(!nombre||!precio){omitidos++;continue;}
+      const existe=productos.find(p=>p.nombre.toLowerCase()===nombre.toLowerCase());
+      if(existe){omitidos++;continue;}
+      productos.push({
+        id:nextId(),
+        nombre,
+        categoria:(cols[idxCat]||'Otro').trim(),
+        lugar:(cols[idxLugar]||'Supermercado').trim(),
+        tienda:(cols[idxTienda]||'').trim(),
+        tipo:(cols[idxTipo]||'Básico').trim(),
+        unidad:(cols[idxUnidad]||'piezas').trim(),
+        cantidad:parseFloat(cols[idxCant])||1,
+        precioActual:precio,
+        precioAnterior:precio,
+        codigo:(cols[idxCodigo]||'').trim(),
+        historial:[{fecha:hoy(),precio}]
+      });
+      agregados++;
+    }
+    guardarLocal();renderInventario();
+    event.target.value='';
+    toast(`Importados: ${agregados} producto${agregados!==1?'s':''}${omitidos?` (${omitidos} omitidos)`:''}`)
+  };
+  reader.readAsText(file,'UTF-8');
+}
+
+function parseCsvRow(row){
+  const result=[];let cur='';let inQ=false;
+  for(let i=0;i<row.length;i++){
+    const c=row[i];
+    if(c==='"'){if(inQ&&row[i+1]==='"'){cur+='"';i++;}else inQ=!inQ;}
+    else if(c===','&&!inQ){result.push(cur);cur='';}
+    else cur+=c;
+  }
+  result.push(cur);
+  return result;
+}
+
+// --- EXPORTAR CSV ---
+function exportCSV(){
+  const headers=['Nombre','Categoría','Lugar','Tienda','Tipo','Unidad','Cantidad','Precio actual (MXN)','Precio anterior (MXN)','Precio por unidad','Última fecha de compra','Código'];
+  const rows=productos.map(p=>{
+    const uf=p.historial&&p.historial.length?p.historial[p.historial.length-1].fecha:'';
+    return[p.nombre,p.categoria,p.lugar,p.tienda||'',p.tipo,p.unidad,p.cantidad,p.precioActual,p.precioAnterior,(p.precioActual/p.cantidad).toFixed(4),uf,p.codigo||''];
+  });
+  const bom='\uFEFF';
+  const csv=bom+[headers,...rows].map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download='inventario_hogar.csv';a.click();
+}
+
+// --- GRÁFICAS ---
+function renderGraficas(){
+  document.getElementById('metricas').innerHTML=[
+    {label:'Total productos',val:productos.length,color:''},
+    {label:'Básicos',val:productos.filter(p=>p.tipo==='Básico').length,color:''},
+    {label:'Adicionales',val:productos.filter(p=>p.tipo==='Adicional').length,color:''},
+    {label:'Subieron de precio',val:productos.filter(p=>p.precioActual>p.precioAnterior).length,color:'color:#a32d2d'},
+    {label:'Bajaron de precio',val:productos.filter(p=>p.precioActual<p.precioAnterior).length,color:'color:#0f6e56'},
+  ].map(m=>`<div class="metric"><div class="metric-label">${m.label}</div><div class="metric-value" style="${m.color}">${m.val}</div></div>`).join('');
+
+  const todasFechas=productos.flatMap(p=>(p.historial||[]).map(h=>h.fecha.slice(0,7)));
+  const mesesUnicos=[...new Set(todasFechas)].sort();
+  const mesesLabel=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const gastoData=mesesUnicos.map(ym=>{
+    const[y,m]=ym.split('-');
+    const label=mesesLabel[parseInt(m)-1]+' '+y;
+    const total=productos.reduce((s,p)=>{
+      const h=(p.historial||[]).filter(h=>h.fecha.startsWith(ym));
+      return s+h.reduce((ss,hh)=>ss+hh.precio,0);
+    },0);
+    return{label,total};
+  });
+
+  if(chartMensual)chartMensual.destroy();
+  chartMensual=new Chart(document.getElementById('chart-mensual'),{
+    type:'bar',
+    data:{labels:gastoData.map(d=>d.label),datasets:[{label:'Total MXN',data:gastoData.map(d=>d.total),backgroundColor:'#1d9e75',borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>'$'+v}},x:{ticks:{autoSkip:false,maxRotation:45}}}}
+  });
+
+  const variacion=productos.map(p=>({
+    nombre:p.nombre.length>16?p.nombre.slice(0,16)+'…':p.nombre,
+    v:parseFloat(((p.precioActual-p.precioAnterior)/(p.precioAnterior||1)*100).toFixed(1)),
+    color:p.precioActual>p.precioAnterior?'#e24b4a':'#1d9e75'
+  })).sort((a,b)=>Math.abs(b.v)-Math.abs(a.v)).slice(0,8);
+
+  const hVar=Math.max(220,variacion.length*44+60);
+  document.getElementById('chart-var-wrap').style.height=hVar+'px';
+  if(chartVariacion)chartVariacion.destroy();
+  chartVariacion=new Chart(document.getElementById('chart-variacion'),{
+    type:'bar',
+    data:{labels:variacion.map(d=>d.nombre),datasets:[{data:variacion.map(d=>d.v),backgroundColor:variacion.map(d=>d.color),borderRadius:4}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%'}}}}
+  });
+
+  chartHistoriales.forEach(c=>c.destroy());
+  chartHistoriales=[];
+  const histDiv=document.getElementById('historiales');
+  histDiv.innerHTML='';
+  productos.filter(p=>p.historial&&p.historial.length>=2).forEach(p=>{
+    const hist=[...p.historial].sort((a,b)=>a.fecha.localeCompare(b.fecha));
+    const wrap=document.createElement('div');
+    wrap.className='chart-card';
+    wrap.innerHTML=`<div class="chart-title">Historial de precio — ${p.nombre}</div><div class="chart-sub">Precio total por compra</div><div style="position:relative;height:140px"><canvas id="hc-${p.id}" role="img" aria-label="Historial de precio de ${p.nombre}"></canvas></div>`;
+    histDiv.appendChild(wrap);
+    const c=new Chart(document.getElementById('hc-'+p.id),{
+      type:'line',
+      data:{labels:hist.map(h=>fmtFecha(h.fecha)),datasets:[{data:hist.map(h=>h.precio),borderColor:'#378add',backgroundColor:'rgba(55,138,221,0.08)',tension:0.3,pointRadius:4,fill:true}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>'$'+v}},x:{ticks:{autoSkip:false,maxRotation:45}}}}
+    });
+    chartHistoriales.push(c);
+  });
+}
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.style.display='block';
+  setTimeout(()=>t.style.display='none',2500);
+}
+
+cargar();
+renderInventario();
+</script>
+</body>
+</html>
