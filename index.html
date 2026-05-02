@@ -16,8 +16,6 @@ header span{font-size:12px;color:#888}
 .tab{padding:10px 18px;border:none;background:none;cursor:pointer;font-size:14px;color:#888;border-bottom:2px solid transparent;margin-bottom:-1px}
 .tab.active{color:#1a1a18;font-weight:500;border-bottom:2px solid #1a1a18}
 .main{padding:20px 24px;max-width:980px;margin:0 auto}
-
-/* Chips / filtros */
 .filter-group{margin-bottom:10px}
 .filter-label{font-size:11px;color:#aaa;margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
@@ -27,7 +25,6 @@ header span{font-size:12px;color:#888}
 .chip.active-green{background:#1d9e75;color:#fff;border-color:#1d9e75}
 .chip.active-blue{background:#378add;color:#fff;border-color:#378add}
 .chip.active-amber{background:#c27c10;color:#fff;border-color:#c27c10}
-
 .row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
 input,select{padding:7px 10px;border:1px solid #d0d0c8;border-radius:8px;font-size:13px;background:#fff;color:#1a1a18;outline:none}
 input:focus,select:focus{border-color:#888}
@@ -41,7 +38,8 @@ input:focus,select:focus{border-color:#888}
 .btn-teal{padding:5px 10px;border:none;border-radius:6px;background:#1d9e75;cursor:pointer;font-size:12px;color:#fff}
 .btn-scan{padding:7px 13px;border:1px solid #378add;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;color:#378add;display:flex;align-items:center;gap:5px}
 .btn-scan:hover{background:#e6f1fb}
-
+.btn-json{padding:7px 14px;border:1px solid #9b59b6;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;color:#9b59b6}
+.btn-json:hover{background:#f5eeff}
 .card{background:#fff;border:1px solid #e0e0d8;border-radius:12px;padding:14px 18px;margin-bottom:8px}
 .badge{display:inline-block;font-size:11px;padding:2px 9px;border-radius:20px;font-weight:500}
 .badge-basico{background:#eaf3de;color:#3b6d11}
@@ -51,15 +49,11 @@ input:focus,select:focus{border-color:#888}
 .price-up{color:#a32d2d;font-weight:500}
 .price-down{color:#0f6e56;font-weight:500}
 .price-eq{color:#888}
-
-/* Métricas */
 .metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:20px}
 .metric{background:#fff;border:1px solid #e0e0d8;border-radius:8px;padding:12px 16px}
 .metric-label{font-size:11px;color:#888;margin-bottom:4px}
-.metric-value{font-size:22px;font-weight:500}
+.metric-value{font-size:20px;font-weight:500}
 .metric-sub{font-size:11px;color:#aaa;margin-top:2px}
-
-/* Gráficas */
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 @media(max-width:640px){.charts-grid{grid-template-columns:1fr}}
 .chart-card{background:#fff;border:1px solid #e0e0d8;border-radius:12px;padding:16px 18px}
@@ -69,28 +63,28 @@ input:focus,select:focus{border-color:#888}
 .legend{display:flex;gap:12px;margin-top:10px;font-size:12px;color:#888;flex-wrap:wrap}
 .legend span{display:flex;align-items:center;gap:5px}
 .legend-dot{width:10px;height:10px;border-radius:2px;display:inline-block}
-
-/* Grafica selector */
-.graf-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.graf-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
 .graf-tab{padding:6px 14px;border:1px solid #d0d0c8;border-radius:20px;background:#fff;cursor:pointer;font-size:12px;color:#555}
 .graf-tab.active{background:#1a1a18;color:#fff;border-color:#1a1a18}
-
-/* Modal */
+.date-filter-bar{background:#fff;border:1px solid #e0e0d8;border-radius:10px;padding:10px 14px;margin-bottom:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.date-filter-bar label{font-size:12px;color:#888}
 .overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.4);z-index:100;align-items:center;justify-content:center}
 .overlay.open{display:flex}
-.modal{background:#fff;border-radius:12px;padding:24px;width:480px;max-width:96vw;border:1px solid #d0d0c8;max-height:92vh;overflow-y:auto}
+.modal{background:#fff;border-radius:12px;padding:24px;width:500px;max-width:96vw;border:1px solid #d0d0c8;max-height:92vh;overflow-y:auto}
 .modal h3{font-size:16px;font-weight:500;margin-bottom:4px}
 .modal-sub{font-size:12px;color:#888;margin-bottom:10px}
 .form-label{display:block;font-size:12px;color:#888;margin-top:12px;margin-bottom:4px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.form-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .full{width:100%}
 .modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:20px}
+.hint{font-size:11px;color:#aaa;margin-top:3px}
 .empty{color:#888;font-size:14px;padding:16px 0}
 .prod-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .prod-info{flex:1}
 .prod-name-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:6px}
 .prod-name{font-weight:500;font-size:15px}
-.prod-details{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:#444}
+.prod-details{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:#444}
 .prod-cod{font-size:11px;color:#aaa;margin-top:4px}
 .prod-actions{display:flex;gap:6px;flex-shrink:0;align-items:flex-start;flex-wrap:wrap}
 .count{font-size:13px;color:#888}
@@ -110,6 +104,7 @@ input:focus,select:focus{border-color:#888}
 #scanner-status{color:#fff;font-size:14px;text-align:center;max-width:300px}
 #scanner-close{padding:10px 24px;border:2px solid #fff;border-radius:8px;background:transparent;color:#fff;cursor:pointer;font-size:14px}
 #toast{position:fixed;bottom:24px;right:24px;background:#1d9e75;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;display:none;z-index:300}
+.section-title{font-size:12px;color:#aaa;text-transform:uppercase;letter-spacing:.05em;margin:16px 0 8px}
 </style>
 </head>
 <body>
@@ -127,31 +122,26 @@ input:focus,select:focus{border-color:#888}
   <div id="vista-inventario">
     <div style="margin-top:8px;margin-bottom:10px">
       <input id="busqueda" placeholder="Buscar por nombre, tienda o código…" oninput="renderInventario()" style="width:100%;margin-bottom:10px">
-
-      <div class="filter-group">
-        <div class="filter-label">Tipo</div>
-        <div class="chips" id="chips-tipo"></div>
-      </div>
-      <div class="filter-group">
-        <div class="filter-label">Lugar de compra</div>
-        <div class="chips" id="chips-lugar"></div>
-      </div>
-      <div class="filter-group">
-        <div class="filter-label">Categoría</div>
-        <div class="chips" id="chips-cat"></div>
-      </div>
+      <div class="filter-group"><div class="filter-label">Tipo</div><div class="chips" id="chips-tipo"></div></div>
+      <div class="filter-group"><div class="filter-label">Lugar de compra</div><div class="chips" id="chips-lugar"></div></div>
+      <div class="filter-group"><div class="filter-label">Categoría</div><div class="chips" id="chips-cat"></div></div>
     </div>
-
-    <div class="row" style="margin-bottom:14px">
+    <div class="row" style="margin-bottom:6px">
       <button class="btn-primary" onclick="abrirModal()">+ Agregar producto</button>
       <button class="btn-scan" onclick="abrirScanner()">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="5" height="5"/><rect x="16" y="3" width="5" height="5"/><rect x="3" y="16" width="5" height="5"/><line x1="21" y1="12" x2="12" y2="12"/><line x1="12" y1="21" x2="12" y2="12"/></svg>
         Escanear
       </button>
-      <button class="btn" onclick="document.getElementById('import-csv').click()">Importar .csv</button>
-      <input type="file" id="import-csv" accept=".csv" style="display:none" onchange="importarCSV(event)">
-      <button class="btn" onclick="exportCSV()">Exportar .csv</button>
       <span class="count" id="count-label" style="margin-left:auto"></span>
+    </div>
+    <div class="section-title">Importar / Exportar</div>
+    <div class="row" style="margin-bottom:14px;gap:6px">
+      <button class="btn" onclick="document.getElementById('import-csv').click()">📥 Importar .csv</button>
+      <input type="file" id="import-csv" accept=".csv" style="display:none" onchange="importarCSV(event)">
+      <button class="btn" onclick="exportCSV()">📤 Exportar .csv</button>
+      <button class="btn-json" onclick="exportarJSON()">💾 Exportar base de datos</button>
+      <button class="btn-json" onclick="document.getElementById('import-json').click()">📂 Importar base de datos</button>
+      <input type="file" id="import-json" accept=".json" style="display:none" onchange="importarJSON(event)">
     </div>
     <div id="lista-productos"></div>
   </div>
@@ -159,6 +149,26 @@ input:focus,select:focus{border-color:#888}
   <!-- GRÁFICAS -->
   <div id="vista-graficas" style="display:none">
     <div class="metric-grid" id="metricas"></div>
+
+    <!-- Filtro de fecha -->
+    <div class="date-filter-bar">
+      <label>Filtrar gráficas por:</label>
+      <select id="date-filter-mode" onchange="onDateFilterChange()">
+        <option value="todo">Todo el historial</option>
+        <option value="dia">Día específico</option>
+        <option value="mes">Mes específico</option>
+        <option value="anio">Año específico</option>
+      </select>
+      <input type="date" id="date-filter-dia" style="display:none" oninput="renderGrafContent()">
+      <select id="date-filter-mes" style="display:none" onchange="renderGrafContent()">
+        <option value="01">Enero</option><option value="02">Febrero</option><option value="03">Marzo</option>
+        <option value="04">Abril</option><option value="05">Mayo</option><option value="06">Junio</option>
+        <option value="07">Julio</option><option value="08">Agosto</option><option value="09">Septiembre</option>
+        <option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+      </select>
+      <select id="date-filter-anio" style="display:none" onchange="renderGrafContent()"></select>
+      <span id="date-filter-result" style="font-size:12px;color:#1d9e75;font-weight:500"></span>
+    </div>
 
     <div class="graf-tabs" id="graf-tabs">
       <button class="graf-tab active" onclick="setGrafTab('mensual',this)">📅 Gasto mensual</button>
@@ -169,7 +179,6 @@ input:focus,select:focus{border-color:#888}
       <button class="graf-tab" onclick="setGrafTab('variacion',this)">📈 Variación de precios</button>
       <button class="graf-tab" onclick="setGrafTab('historiales',this)">🗓️ Historial por producto</button>
     </div>
-
     <div id="graf-content"></div>
   </div>
 </div>
@@ -207,20 +216,29 @@ input:focus,select:focus{border-color:#888}
       <div><label class="form-label">Tipo de producto</label>
         <select class="full" id="f-tipo"><option>Básico</option><option>Adicional</option></select>
       </div>
-      <div><label class="form-label">Unidad</label>
+      <div><label class="form-label">Unidad de medida</label>
         <select class="full" id="f-unidad">
           <option>litros</option><option>kg</option><option>piezas</option><option>ml</option><option>g</option><option>m</option>
         </select>
       </div>
     </div>
-    <div class="form-row">
-      <div><label class="form-label">Cantidad en presentación</label>
-        <input class="full" id="f-cantidad" type="number" min="0.001" step="0.001" placeholder="Ej. 0.240">
+    <div class="form-row3">
+      <div>
+        <label class="form-label">Unidades compradas</label>
+        <input class="full" id="f-unidades" type="number" min="1" step="1" value="1" placeholder="Ej. 2">
+        <div class="hint">Ej: 2 jabones</div>
       </div>
-      <div><label class="form-label">Precio actual (MXN)</label>
-        <input class="full" id="f-precio" type="number" min="0" step="0.01" placeholder="0.00">
+      <div>
+        <label class="form-label">Cantidad por unidad</label>
+        <input class="full" id="f-cantidad" type="number" min="0.001" step="0.001" placeholder="Ej. 6.5">
+        <div class="hint">Ej: 6.5 litros c/u</div>
+      </div>
+      <div>
+        <label class="form-label">Precio total (MXN)</label>
+        <input class="full" id="f-precio" type="number" min="0" step="0.01" placeholder="0.00" oninput="calcularDesglose()">
       </div>
     </div>
+    <div id="desglose-precio" style="font-size:12px;color:#1d9e75;margin-top:6px;min-height:18px"></div>
     <label class="form-label">Fecha de esta compra</label>
     <input class="full" id="f-fecha" type="date">
     <div class="modal-actions">
@@ -238,10 +256,11 @@ input:focus,select:focus{border-color:#888}
 <div id="toast"></div>
 
 <script>
-const STORAGE_KEY='inventario_hogar_v3';
+const STORAGE_KEY='inventario_hogar_v4';
 const CATS=['Limpieza','Alimentos','Higiene personal','Bebidas','Cuidado del hogar','Otro'];
 const LUGARES=['Supermercado','Internet','Mercado local','Tienda'];
-const PALETTE=['#1d9e75','#378add','#e2804a','#9b59b6','#e24b4a','#f0c040','#2ecc71','#1abc9c','#e74c3c','#3498db'];
+const MESES_L=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+const PALETTE=['#1d9e75','#378add','#e2804a','#9b59b6','#e24b4a','#f0c040','#2ecc71','#1abc9c','#e74c3c','#3498db','#e67e22','#8e44ad'];
 
 let productos=[];
 let editandoId=null;
@@ -252,50 +271,75 @@ let activeChips={tipo:'Todos',lugar:'Todos',cat:'Todos'};
 let grafTab='mensual';
 let activeCharts=[];
 
+/* ---- UTILIDADES ---- */
 function hoy(){return new Date().toISOString().slice(0,10);}
 function fmtFecha(iso){if(!iso)return'—';const[y,m,d]=iso.split('-');return`${d}/${m}/${y}`;}
 function fmt(v){return'$'+Number(v).toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2});}
-function precioUnitario(p){const pu=p.precioActual/p.cantidad;const u=p.unidad==='litros'?'L':p.unidad==='piezas'?'pieza':p.unidad;return fmt(pu)+' / '+u;}
 function nextId(){return productos.length?Math.max(...productos.map(p=>p.id))+1:1;}
 function sum(arr){return arr.reduce((a,b)=>a+b,0);}
 
+function precioUnitario(p){
+  const unidades=p.unidades||1;
+  const total=unidades*p.cantidad;
+  if(total===0)return'—';
+  const pu=p.precioActual/total;
+  const u=p.unidad==='litros'?'L':p.unidad==='piezas'?'pieza':p.unidad;
+  let s=fmt(pu)+' / '+u;
+  if(unidades>1)s+=` (${unidades} unidades × ${p.cantidad} ${p.unidad})`;
+  return s;
+}
+
+/* ---- STORAGE ---- */
 function cargar(){
   try{
     const d=localStorage.getItem(STORAGE_KEY);
     if(d){productos=JSON.parse(d);return;}
+    // Migrar versión anterior si existe
+    const old=localStorage.getItem('inventario_hogar_v3')||localStorage.getItem('inventario_hogar_v2')||localStorage.getItem('inventario_hogar_v1');
+    if(old){productos=JSON.parse(old).map(p=>({...p,unidades:p.unidades||1}));guardarLocal();return;}
     productos=[
-      {id:1,nombre:'Jabón líquido',categoria:'Limpieza',lugar:'Supermercado',tienda:'Chedraui',tipo:'Básico',unidad:'litros',cantidad:6.8,precioActual:89,precioAnterior:79,codigo:'7501234567890',historial:[{fecha:'2024-01-10',precio:75},{fecha:'2024-02-08',precio:79},{fecha:'2024-03-07',precio:89}]},
-      {id:2,nombre:'Arroz',categoria:'Alimentos',lugar:'Mercado local',tienda:'Mercado Medellín',tipo:'Básico',unidad:'kg',cantidad:5,precioActual:52,precioAnterior:48,codigo:'7509876543210',historial:[{fecha:'2024-01-15',precio:45},{fecha:'2024-02-14',precio:48},{fecha:'2024-03-13',precio:52}]},
-      {id:3,nombre:'Shampoo',categoria:'Higiene personal',lugar:'Internet',tienda:'Amazon',tipo:'Adicional',unidad:'ml',cantidad:750,precioActual:120,precioAnterior:135,codigo:'7501111111111',historial:[{fecha:'2024-01-20',precio:130},{fecha:'2024-02-19',precio:135},{fecha:'2024-03-18',precio:120}]},
-      {id:4,nombre:'Leche',categoria:'Bebidas',lugar:'Tienda',tienda:'OXXO',tipo:'Básico',unidad:'litros',cantidad:1,precioActual:28,precioAnterior:26,codigo:'7502222222222',historial:[{fecha:'2024-01-05',precio:24},{fecha:'2024-02-04',precio:26},{fecha:'2024-03-05',precio:28}]}
+      {id:1,nombre:'Jabón líquido',categoria:'Limpieza',lugar:'Supermercado',tienda:'Chedraui',tipo:'Básico',unidad:'litros',unidades:1,cantidad:6.8,precioActual:89,precioAnterior:79,codigo:'7501234567890',historial:[{fecha:'2024-01-10',precio:75},{fecha:'2024-02-08',precio:79},{fecha:'2024-03-07',precio:89}]},
+      {id:2,nombre:'Arroz',categoria:'Alimentos',lugar:'Mercado local',tienda:'Mercado Medellín',tipo:'Básico',unidad:'kg',unidades:1,cantidad:5,precioActual:52,precioAnterior:48,codigo:'7509876543210',historial:[{fecha:'2024-01-15',precio:45},{fecha:'2024-02-14',precio:48},{fecha:'2024-03-13',precio:52}]},
+      {id:3,nombre:'Shampoo',categoria:'Higiene personal',lugar:'Internet',tienda:'Amazon',tipo:'Adicional',unidad:'ml',unidades:1,cantidad:750,precioActual:120,precioAnterior:135,codigo:'7501111111111',historial:[{fecha:'2024-01-20',precio:130},{fecha:'2024-02-19',precio:135},{fecha:'2024-03-18',precio:120}]},
+      {id:4,nombre:'Leche',categoria:'Bebidas',lugar:'Tienda',tienda:'OXXO',tipo:'Básico',unidad:'litros',unidades:1,cantidad:1,precioActual:28,precioAnterior:26,codigo:'7502222222222',historial:[{fecha:'2024-01-05',precio:24},{fecha:'2024-02-04',precio:26},{fecha:'2024-03-05',precio:28}]}
     ];
     guardarLocal();
   }catch(e){productos=[];}
 }
-function guardarLocal(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(productos));}catch(e){}}
+function guardarLocal(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(productos));}catch(e){toast('Error al guardar datos');}}
 
-// --- CHIPS ---
-function buildChips(){
-  const tipos=['Todos','Básico','Adicional'];
-  const coloresTipo={Todos:'',Básico:'active-green',Adicional:'active-amber'};
-  document.getElementById('chips-tipo').innerHTML=tipos.map(t=>`<button class="chip${activeChips.tipo===t?' active':''}" onclick="setChip('tipo','${t}',this,'${coloresTipo[t]}')">${t}</button>`).join('');
-
-  const lugares=['Todos',...LUGARES];
-  document.getElementById('chips-lugar').innerHTML=lugares.map(l=>`<button class="chip${activeChips.lugar===l?' active':''}" onclick="setChip('lugar','${l}',this,'active-blue')">${l}</button>`).join('');
-
-  const cats=['Todos',...CATS];
-  document.getElementById('chips-cat').innerHTML=cats.map(c=>`<button class="chip${activeChips.cat===c?' active':''}" onclick="setChip('cat','${c}',this,'')">${c}</button>`).join('');
+/* ---- DESGLOSE EN MODAL ---- */
+function calcularDesglose(){
+  const precio=parseFloat(document.getElementById('f-precio').value)||0;
+  const unidades=parseFloat(document.getElementById('f-unidades').value)||1;
+  const cantidad=parseFloat(document.getElementById('f-cantidad').value)||0;
+  const unidad=document.getElementById('f-unidad').value;
+  const u=unidad==='litros'?'L':unidad==='piezas'?'pieza':unidad;
+  const el=document.getElementById('desglose-precio');
+  if(precio>0&&cantidad>0){
+    const total=unidades*cantidad;
+    const pu=precio/total;
+    if(unidades>1)el.textContent=`Desglose: ${fmt(precio/unidades)} por unidad · ${fmt(pu)} / ${u}`;
+    else el.textContent=`Desglose: ${fmt(pu)} / ${u}`;
+  }else{el.textContent='';}
 }
 
+/* ---- CHIPS ---- */
+function buildChips(){
+  const tipos=['Todos','Básico','Adicional'];
+  const colT={Todos:'',Básico:'active-green',Adicional:'active-amber'};
+  document.getElementById('chips-tipo').innerHTML=tipos.map(t=>`<button class="chip${activeChips.tipo===t?' active':''}" onclick="setChip('tipo','${t}',this,'${colT[t]}')">${t}</button>`).join('');
+  document.getElementById('chips-lugar').innerHTML=['Todos',...LUGARES].map(l=>`<button class="chip${activeChips.lugar===l?' active':''}" onclick="setChip('lugar','${l}',this,'active-blue')">${l}</button>`).join('');
+  document.getElementById('chips-cat').innerHTML=['Todos',...CATS].map(c=>`<button class="chip${activeChips.cat===c?' active':''}" onclick="setChip('cat','${c}',this,'')">${c}</button>`).join('');
+}
 function setChip(group,val,el,colorClass){
   activeChips[group]=val;
-  const container=el.parentElement;
-  container.querySelectorAll('.chip').forEach(c=>{c.className='chip';});
+  el.parentElement.querySelectorAll('.chip').forEach(c=>c.className='chip');
   el.className='chip '+(val==='Todos'?'active':(colorClass||'active'));
   renderInventario();
 }
 
-// --- FILTRADO ---
+/* ---- FILTRADO ---- */
 function filtrados(){
   const b=document.getElementById('busqueda').value.toLowerCase();
   return productos.filter(p=>{
@@ -307,7 +351,7 @@ function filtrados(){
   });
 }
 
-// --- INVENTARIO ---
+/* ---- RENDER INVENTARIO ---- */
 function renderInventario(){
   buildChips();
   const lista=filtrados();
@@ -317,9 +361,10 @@ function renderInventario(){
   el.innerHTML=lista.map(p=>{
     const diff=p.precioActual-p.precioAnterior;
     const tend=diff>0?'up':diff<0?'down':'eq';
-    const tendHTML=tend==='up'?`<span class="price-up">&#9650; ${fmt(diff)}</span>`:tend==='down'?`<span class="price-down">&#9660; ${fmt(Math.abs(diff))}</span>`:'<span class="price-eq">—</span>';
-    const ultimaFecha=p.historial&&p.historial.length?fmtFecha(p.historial[p.historial.length-1].fecha):'—';
+    const tendHTML=tend==='up'?`<span class="price-up">▲ ${fmt(diff)}</span>`:tend==='down'?`<span class="price-down">▼ ${fmt(Math.abs(diff))}</span>`:'<span class="price-eq">—</span>';
+    const uf=p.historial&&p.historial.length?fmtFecha(p.historial[p.historial.length-1].fecha):'—';
     const exp=expandidos[p.id];
+    const unidades=p.unidades||1;
     return`<div class="card" id="card-${p.id}">
       <div class="prod-row">
         <div class="prod-info">
@@ -334,8 +379,8 @@ function renderInventario(){
             <span>Precio actual: <b>${fmt(p.precioActual)}</b> ${tendHTML}</span>
             <span>Anterior: <b>${fmt(p.precioAnterior)}</b></span>
             <span>Por unidad: <b>${precioUnitario(p)}</b></span>
-            <span>Presentación: <b>${p.cantidad} ${p.unidad}</b></span>
-            <span>Última compra: <b>${ultimaFecha}</b></span>
+            <span>Presentación: <b>${unidades>1?unidades+' × ':''} ${p.cantidad} ${p.unidad}</b></span>
+            <span>Última compra: <b>${uf}</b></span>
           </div>
           ${p.codigo?`<div class="prod-cod">Cód: ${p.codigo}</div>`:''}
         </div>
@@ -352,10 +397,12 @@ function renderInventario(){
 
 function renderHistorial(p){
   const hist=[...(p.historial||[])].sort((a,b)=>a.fecha.localeCompare(b.fecha));
+  const u=p.unidad==='litros'?'L':p.unidad==='piezas'?'pieza':p.unidad;
+  const totalUnid=(p.unidades||1)*p.cantidad;
   const rows=hist.map((h,i)=>{
     let cambio='';
-    if(i>0){const d=h.precio-hist[i-1].precio;if(d>0)cambio=`<span class="hist-up">&#9650; ${fmt(d)}</span>`;else if(d<0)cambio=`<span class="hist-down">&#9660; ${fmt(Math.abs(d))}</span>`;else cambio='<span style="color:#aaa">—</span>';}
-    return`<tr><td>${fmtFecha(h.fecha)}</td><td>${fmt(h.precio)}</td><td>${fmt(h.precio/p.cantidad)} / ${p.unidad==='litros'?'L':p.unidad==='piezas'?'pieza':p.unidad}</td><td>${cambio}</td><td><button class="btn-danger" style="padding:2px 7px;font-size:11px" onclick="eliminarCompra(${p.id},'${h.fecha}',${h.precio})">×</button></td></tr>`;
+    if(i>0){const d=h.precio-hist[i-1].precio;cambio=d>0?`<span class="hist-up">▲ ${fmt(d)}</span>`:d<0?`<span class="hist-down">▼ ${fmt(Math.abs(d))}</span>`:'<span style="color:#aaa">—</span>';}
+    return`<tr><td>${fmtFecha(h.fecha)}</td><td>${fmt(h.precio)}</td><td>${fmt(h.precio/totalUnid)} / ${u}</td><td>${cambio}</td><td><button class="btn-danger" style="padding:2px 7px;font-size:11px" onclick="eliminarCompra(${p.id},'${h.fecha}',${h.precio})">×</button></td></tr>`;
   }).join('');
   return`<div class="hist-section">
     <div class="hist-title">Historial de compras</div>
@@ -372,8 +419,7 @@ function toggleHistorial(id){
   expandidos[id]=!expandidos[id];
   const p=productos.find(x=>x.id===id);if(!p)return;
   document.getElementById('hist-'+id).innerHTML=expandidos[id]?renderHistorial(p):'';
-  const card=document.getElementById('card-'+id);
-  const btn=card?card.querySelector('.btn-sm'):null;
+  const btn=document.getElementById('card-'+id)?.querySelector('.btn-sm');
   if(btn)btn.textContent=expandidos[id]?'Ocultar':'Historial';
 }
 
@@ -410,21 +456,24 @@ function eliminarCompra(id,fecha,precio){
   renderInventario();toast('Compra eliminada');
 }
 
-// --- MODAL ---
+/* ---- MODAL ---- */
 function actualizarPlaceholderTienda(){
-  const lugar=document.getElementById('f-lugar').value;
   const ph={Supermercado:'Ej. Walmart, Chedraui…',Internet:'Ej. Amazon, MercadoLibre…','Mercado local':'Ej. Mercado Medellín…',Tienda:'Ej. OXXO, farmacia…'};
-  document.getElementById('f-tienda').placeholder=ph[lugar]||'Nombre de la tienda';
+  document.getElementById('f-tienda').placeholder=ph[document.getElementById('f-lugar').value]||'Nombre de la tienda';
 }
 function abrirModal(){
   editandoId=null;
   document.getElementById('modal-title').textContent='Agregar producto';
-  ['nombre','codigo','cantidad','precio','tienda'].forEach(f=>{const el=document.getElementById('f-'+f);if(el)el.value='';});
+  ['nombre','codigo','tienda'].forEach(f=>document.getElementById('f-'+f).value='');
+  document.getElementById('f-cantidad').value='';
+  document.getElementById('f-precio').value='';
+  document.getElementById('f-unidades').value='1';
   document.getElementById('f-fecha').value=hoy();
   document.getElementById('f-cat').value='Limpieza';
   document.getElementById('f-lugar').value='Supermercado';
   document.getElementById('f-tipo').value='Básico';
   document.getElementById('f-unidad').value='litros';
+  document.getElementById('desglose-precio').textContent='';
   actualizarPlaceholderTienda();
   document.getElementById('overlay').classList.add('open');
 }
@@ -439,10 +488,12 @@ function abrirEditar(id){
   document.getElementById('f-tienda').value=p.tienda||'';
   document.getElementById('f-tipo').value=p.tipo;
   document.getElementById('f-unidad').value=p.unidad;
+  document.getElementById('f-unidades').value=p.unidades||1;
   document.getElementById('f-cantidad').value=p.cantidad;
   document.getElementById('f-precio').value=p.precioActual;
   document.getElementById('f-fecha').value=hoy();
   actualizarPlaceholderTienda();
+  calcularDesglose();
   document.getElementById('overlay').classList.add('open');
 }
 function cerrarModal(){document.getElementById('overlay').classList.remove('open');}
@@ -454,6 +505,7 @@ function guardar(){
   if(!nombre||!precioStr){toast('Completa nombre y precio');return;}
   const precio=parseFloat(precioStr);
   const cantidad=parseFloat(document.getElementById('f-cantidad').value)||1;
+  const unidades=parseInt(document.getElementById('f-unidades').value)||1;
   const fecha=document.getElementById('f-fecha').value||hoy();
   const tienda=document.getElementById('f-tienda').value.trim();
   if(editandoId){
@@ -462,10 +514,10 @@ function guardar(){
       const hist=[...(p.historial||[])].filter(h=>h.fecha!==fecha);
       hist.push({fecha,precio});hist.sort((a,b)=>a.fecha.localeCompare(b.fecha));
       const prev=hist.length>1?hist[hist.length-2].precio:p.precioAnterior;
-      return{...p,nombre,codigo:document.getElementById('f-codigo').value.trim(),categoria:document.getElementById('f-cat').value,lugar:document.getElementById('f-lugar').value,tienda,tipo:document.getElementById('f-tipo').value,unidad:document.getElementById('f-unidad').value,cantidad,precioAnterior:prev,precioActual:precio,historial:hist};
+      return{...p,nombre,codigo:document.getElementById('f-codigo').value.trim(),categoria:document.getElementById('f-cat').value,lugar:document.getElementById('f-lugar').value,tienda,tipo:document.getElementById('f-tipo').value,unidad:document.getElementById('f-unidad').value,unidades,cantidad,precioAnterior:prev,precioActual:precio,historial:hist};
     });
   }else{
-    productos.push({id:nextId(),nombre,codigo:document.getElementById('f-codigo').value.trim(),categoria:document.getElementById('f-cat').value,lugar:document.getElementById('f-lugar').value,tienda,tipo:document.getElementById('f-tipo').value,unidad:document.getElementById('f-unidad').value,cantidad,precioActual:precio,precioAnterior:precio,historial:[{fecha,precio}]});
+    productos.push({id:nextId(),nombre,codigo:document.getElementById('f-codigo').value.trim(),categoria:document.getElementById('f-cat').value,lugar:document.getElementById('f-lugar').value,tienda,tipo:document.getElementById('f-tipo').value,unidad:document.getElementById('f-unidad').value,unidades,cantidad,precioActual:precio,precioAnterior:precio,historial:[{fecha,precio}]});
   }
   guardarLocal();cerrarModal();renderInventario();
   toast(editandoId?'Producto actualizado':'Producto agregado');
@@ -477,7 +529,7 @@ function eliminar(id){
   guardarLocal();renderInventario();toast('Producto eliminado');
 }
 
-// --- SCANNER ---
+/* ---- SCANNER ---- */
 function abrirScanner(){scannerModoModal=false;_iniciarScanner();}
 function abrirScannerModal(){scannerModoModal=true;_iniciarScanner();}
 function _iniciarScanner(){
@@ -491,9 +543,9 @@ function _iniciarScanner(){
     document.getElementById('scanner-status').textContent='Apunta la cámara al código de barras';
     scanner.start(camId,{fps:12,qrbox:{width:240,height:160}},codigo=>{
       cerrarScanner();
-      if(scannerModoModal){document.getElementById('f-codigo').value=codigo;document.getElementById('overlay').classList.add('open');toast('Código escaneado: '+codigo);}
-      else{abrirModal();setTimeout(()=>{document.getElementById('f-codigo').value=codigo;},100);toast('Código: '+codigo);}
-    },()=>{}).catch(err=>{document.getElementById('scanner-status').textContent='No se pudo acceder a la cámara. Verifica los permisos.';});
+      if(scannerModoModal){document.getElementById('f-codigo').value=codigo;document.getElementById('overlay').classList.add('open');toast('Código: '+codigo);}
+      else{abrirModal();setTimeout(()=>{document.getElementById('f-codigo').value=codigo;},100);}
+    },()=>{}).catch(()=>{document.getElementById('scanner-status').textContent='No se pudo acceder a la cámara. Verifica los permisos.';});
   }).catch(()=>{document.getElementById('scanner-status').textContent='No se pudo acceder a la cámara.';});
 }
 function cerrarScanner(){
@@ -501,153 +553,243 @@ function cerrarScanner(){
   if(scanner){try{scanner.stop().then(()=>{scanner.clear();scanner=null;}).catch(()=>{scanner=null;});}catch(e){scanner=null;}}
 }
 
-// --- IMPORTAR CSV ---
+/* ---- EXPORTAR / IMPORTAR CSV (punto y coma, UTF-8 con BOM) ---- */
+function esc(v){return String(v===null||v===undefined?'':v).replace(/"/g,'""');}
+
+function exportCSV(){
+  const SEP=';';
+  const headers=['Nombre','Categoría','Lugar','Tienda','Tipo','Unidad','Unidades compradas','Cantidad por unidad','Precio actual (MXN)','Precio anterior (MXN)','Precio por unidad','Última fecha de compra','Código de barras'];
+  const rows=productos.map(p=>{
+    const uf=p.historial&&p.historial.length?p.historial[p.historial.length-1].fecha:'';
+    const unidades=p.unidades||1;
+    const pu=(p.precioActual/(unidades*p.cantidad)).toFixed(4);
+    return[p.nombre,p.categoria,p.lugar,p.tienda||'',p.tipo,p.unidad,unidades,p.cantidad,p.precioActual,p.precioAnterior,pu,uf,p.codigo||''];
+  });
+  const csv='\uFEFF'+[headers,...rows].map(r=>r.map(v=>`"${esc(v)}"`).join(SEP)).join('\r\n');
+  descargar(new Blob([csv],{type:'text/csv;charset=utf-8'}), 'inventario_hogar.csv');
+}
+
+function parseCsvRow(row,sep=','){
+  const result=[];let cur='';let inQ=false;
+  for(let i=0;i<row.length;i++){
+    const c=row[i];
+    if(c==='"'){if(inQ&&row[i+1]==='"'){cur+='"';i++;}else inQ=!inQ;}
+    else if(c===sep&&!inQ){result.push(cur);cur='';}
+    else cur+=c;
+  }
+  result.push(cur);return result;
+}
+
+function detectSep(line){return line.includes(';')?';':',';}
+
 function importarCSV(event){
   const file=event.target.files[0];if(!file)return;
   const reader=new FileReader();
   reader.onload=e=>{
-    const text=e.target.result.replace(/^\uFEFF/,'');
-    const lines=text.split(/\r?\n/).filter(l=>l.trim());
-    if(lines.length<2){toast('El archivo no tiene datos');return;}
-    const headers=parseCsvRow(lines[0]).map(h=>h.trim().toLowerCase());
-    const idx=k=>headers.findIndex(h=>h.includes(k));
-    const idxNombre=idx('nombre'),idxCat=idx('categor'),idxLugar=idx('lugar'),idxTienda=idx('tienda'),idxTipo=idx('tipo'),idxUnidad=idx('unidad'),idxCant=idx('cantidad'),idxPrecio=headers.findIndex(h=>h.includes('precio actual')),idxPrecAnt=headers.findIndex(h=>h.includes('precio anterior')),idxFecha=idx('fecha'),idxCodigo=idx('digo');
-    if(idxNombre<0||idxPrecio<0){toast('El CSV requiere columnas Nombre y Precio actual');return;}
-    let agregados=0,omitidos=0;
-    for(let i=1;i<lines.length;i++){
-      const cols=parseCsvRow(lines[i]);
-      const nombre=(cols[idxNombre]||'').trim();
-      const precio=parseFloat(cols[idxPrecio])||0;
-      if(!nombre||!precio){omitidos++;continue;}
-      if(productos.find(p=>p.nombre.toLowerCase()===nombre.toLowerCase())){omitidos++;continue;}
-      let fechaCompra=hoy();
-      if(idxFecha>=0&&cols[idxFecha]){
-        const raw=(cols[idxFecha]||'').trim();
-        if(/^\d{4}-\d{2}-\d{2}$/.test(raw))fechaCompra=raw;
-        else if(/^\d{2}\/\d{2}\/\d{4}$/.test(raw)){const[d,m,y]=raw.split('/');fechaCompra=`${y}-${m}-${d}`;}
-      }
-      const precioAnt=idxPrecAnt>=0?parseFloat(cols[idxPrecAnt])||precio:precio;
-      productos.push({id:nextId(),nombre,categoria:idxCat>=0?(cols[idxCat]||'Otro').trim():'Otro',lugar:idxLugar>=0?(cols[idxLugar]||'Supermercado').trim():'Supermercado',tienda:idxTienda>=0?(cols[idxTienda]||'').trim():'',tipo:idxTipo>=0?(cols[idxTipo]||'Básico').trim():'Básico',unidad:idxUnidad>=0?(cols[idxUnidad]||'piezas').trim():'piezas',cantidad:idxCant>=0?parseFloat(cols[idxCant])||1:1,precioActual:precio,precioAnterior:precioAnt,codigo:idxCodigo>=0?(cols[idxCodigo]||'').trim():'',historial:[{fecha:fechaCompra,precio}]});
-      agregados++;
-    }
-    guardarLocal();renderInventario();event.target.value='';
-    toast(`Importados: ${agregados}${omitidos?` (${omitidos} omitidos)`:''}`)
+    // Intentar UTF-8 primero; si hay caracteres raros, releer como latin1
+    procesarCSV(e.target.result);
   };
   reader.readAsText(file,'UTF-8');
-}
-function parseCsvRow(row){
-  const result=[];let cur='';let inQ=false;
-  for(let i=0;i<row.length;i++){const c=row[i];if(c==='"'){if(inQ&&row[i+1]==='"'){cur+='"';i++;}else inQ=!inQ;}else if(c===','&&!inQ){result.push(cur);cur='';}else cur+=c;}
-  result.push(cur);return result;
+  event.target.value='';
 }
 
-// --- EXPORTAR CSV ---
-function exportCSV(){
-  const headers=['Nombre','Categoría','Lugar','Tienda','Tipo','Unidad','Cantidad','Precio actual (MXN)','Precio anterior (MXN)','Precio por unidad','Última fecha de compra','Código'];
-  const rows=productos.map(p=>{const uf=p.historial&&p.historial.length?p.historial[p.historial.length-1].fecha:'';return[p.nombre,p.categoria,p.lugar,p.tienda||'',p.tipo,p.unidad,p.cantidad,p.precioActual,p.precioAnterior,(p.precioActual/p.cantidad).toFixed(4),uf,p.codigo||''];});
-  const csv='\uFEFF'+[headers,...rows].map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='inventario_hogar.csv';a.click();
+function procesarCSV(text){
+  text=text.replace(/^\uFEFF/,'');
+  const lines=text.split(/\r?\n/).filter(l=>l.trim());
+  if(lines.length<2){toast('El archivo no tiene datos');return;}
+  const sep=detectSep(lines[0]);
+  const headers=parseCsvRow(lines[0],sep).map(h=>h.trim().toLowerCase().replace(/["""]/g,''));
+  const idx=k=>headers.findIndex(h=>h.includes(k));
+  const iNom=idx('nombre'),iCat=idx('categor'),iLug=idx('lugar'),iTie=idx('tienda'),iTip=idx('tipo'),iUni=idx('unidad de med')<0?idx('unidad'):idx('unidad de med'),iUnis=idx('unidades comp'),iCant=idx('cantidad'),iPrecio=headers.findIndex(h=>h.includes('precio actual')),iPrecAnt=headers.findIndex(h=>h.includes('precio anterior')),iFecha=idx('fecha'),iCod=idx('digo');
+  if(iNom<0||iPrecio<0){toast('El CSV requiere columnas Nombre y Precio actual');return;}
+  let agregados=0,omitidos=0;
+  for(let i=1;i<lines.length;i++){
+    const cols=parseCsvRow(lines[i],sep).map(c=>c.replace(/^"|"$/g,'').trim());
+    const nombre=cols[iNom]||'';
+    const precio=parseFloat((cols[iPrecio]||'').replace(',','.'))||0;
+    if(!nombre||!precio){omitidos++;continue;}
+    if(productos.find(p=>p.nombre.toLowerCase()===nombre.toLowerCase())){omitidos++;continue;}
+    let fechaCompra=hoy();
+    if(iFecha>=0&&cols[iFecha]){
+      const raw=cols[iFecha].trim();
+      if(/^\d{4}-\d{2}-\d{2}$/.test(raw))fechaCompra=raw;
+      else if(/^\d{2}\/\d{2}\/\d{4}$/.test(raw)){const[d,m,y]=raw.split('/');fechaCompra=`${y}-${m}-${d}`;}
+    }
+    const precioAnt=iPrecAnt>=0?parseFloat((cols[iPrecAnt]||'').replace(',','.'))||precio:precio;
+    const unidades=iUnis>=0?parseInt(cols[iUnis])||1:1;
+    productos.push({id:nextId(),nombre,categoria:iCat>=0?cols[iCat]||'Otro':'Otro',lugar:iLug>=0?cols[iLug]||'Supermercado':'Supermercado',tienda:iTie>=0?cols[iTie]||'':'',tipo:iTip>=0?cols[iTip]||'Básico':'Básico',unidad:iUni>=0?cols[iUni]||'piezas':'piezas',unidades,cantidad:iCant>=0?parseFloat((cols[iCant]||'').replace(',','.'))||1:1,precioActual:precio,precioAnterior:precioAnt,codigo:iCod>=0?cols[iCod]||'':'',historial:[{fecha:fechaCompra,precio}]});
+    agregados++;
+  }
+  guardarLocal();renderInventario();
+  toast(`Importados: ${agregados}${omitidos?` · ${omitidos} omitidos`:''}`)
 }
 
-// --- VISTAS ---
+/* ---- EXPORTAR / IMPORTAR JSON (base de datos completa) ---- */
+function exportarJSON(){
+  const data={version:4,exportado:new Date().toISOString(),productos};
+  descargar(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),'inventario_hogar_backup.json');
+  toast('Base de datos exportada');
+}
+
+function importarJSON(event){
+  const file=event.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      const lista=data.productos||data;
+      if(!Array.isArray(lista)){toast('Archivo JSON inválido');return;}
+      if(!confirm(`¿Importar ${lista.length} productos? Los productos que ya existen no se duplicarán.`))return;
+      let agregados=0;
+      lista.forEach(p=>{
+        if(!p.nombre)return;
+        if(productos.find(x=>x.nombre.toLowerCase()===p.nombre.toLowerCase()))return;
+        productos.push({...p,id:nextId(),unidades:p.unidades||1});
+        agregados++;
+      });
+      guardarLocal();renderInventario();
+      toast(`Importados: ${agregados} productos`);
+    }catch(e){toast('Error al leer el archivo JSON');}
+  };
+  reader.readAsText(file,'UTF-8');
+  event.target.value='';
+}
+
+function descargar(blob,nombre){
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=nombre;a.click();
+}
+
+/* ---- VISTAS ---- */
 let vistaActual='inventario';
 function setVista(v){
   vistaActual=v;
   document.getElementById('vista-inventario').style.display=v==='inventario'?'':'none';
   document.getElementById('vista-graficas').style.display=v==='graficas'?'':'none';
   document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',(i===0&&v==='inventario')||(i===1&&v==='graficas')));
-  if(v==='graficas')renderGraficas();
+  if(v==='graficas'){poblarAnios();renderGraficas();}
 }
 
-// --- GRÁFICAS ---
+/* ---- FILTRO DE FECHA GRÁFICAS ---- */
+function poblarAnios(){
+  const anios=[...new Set(productos.flatMap(p=>(p.historial||[]).map(h=>h.fecha.slice(0,4))))].sort().reverse();
+  const sel=document.getElementById('date-filter-anio');
+  sel.innerHTML=anios.map(a=>`<option value="${a}">${a}</option>`).join('');
+}
+
+function onDateFilterChange(){
+  const mode=document.getElementById('date-filter-mode').value;
+  document.getElementById('date-filter-dia').style.display=mode==='dia'?'':'none';
+  document.getElementById('date-filter-mes').style.display=mode==='mes'?'':'none';
+  document.getElementById('date-filter-anio').style.display=mode==='anio'?'':'none';
+  renderGrafContent();
+}
+
+function getHistorialFiltrado(p){
+  const mode=document.getElementById('date-filter-mode').value;
+  const hist=p.historial||[];
+  if(mode==='todo')return hist;
+  if(mode==='dia'){const d=document.getElementById('date-filter-dia').value;return hist.filter(h=>h.fecha===d);}
+  if(mode==='mes'){const m=document.getElementById('date-filter-mes').value;const a=document.getElementById('date-filter-anio').value;return hist.filter(h=>h.fecha.startsWith(a+'-'+m));}
+  if(mode==='anio'){const a=document.getElementById('date-filter-anio').value;return hist.filter(h=>h.fecha.startsWith(a));}
+  return hist;
+}
+
+function labelFiltro(){
+  const mode=document.getElementById('date-filter-mode').value;
+  if(mode==='todo')return'Todo el historial';
+  if(mode==='dia'){const d=document.getElementById('date-filter-dia').value;return d?fmtFecha(d):'Selecciona un día';}
+  if(mode==='mes'){const m=document.getElementById('date-filter-mes').value;const a=document.getElementById('date-filter-anio').value;return MESES_L[parseInt(m)-1]+' '+a;}
+  if(mode==='anio'){return document.getElementById('date-filter-anio').value;}
+  return'';
+}
+
+/* ---- GRÁFICAS ---- */
 function setGrafTab(tab,el){
   grafTab=tab;
   document.querySelectorAll('.graf-tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
   renderGrafContent();
 }
-
 function destroyCharts(){activeCharts.forEach(c=>{try{c.destroy();}catch(e){}});activeCharts=[];}
 
 function renderGraficas(){
   const totalGasto=sum(productos.map(p=>p.precioActual));
-  const basicos=productos.filter(p=>p.tipo==='Básico');
-  const adicionales=productos.filter(p=>p.tipo==='Adicional');
+  const bas=productos.filter(p=>p.tipo==='Básico');
+  const adic=productos.filter(p=>p.tipo==='Adicional');
   document.getElementById('metricas').innerHTML=[
     {label:'Total productos',val:productos.length,sub:''},
-    {label:'Gasto total registrado',val:fmt(totalGasto),sub:'suma de precios actuales'},
-    {label:'Básicos',val:basicos.length,sub:fmt(sum(basicos.map(p=>p.precioActual)))},
-    {label:'Adicionales',val:adicionales.length,sub:fmt(sum(adicionales.map(p=>p.precioActual)))},
+    {label:'Gasto total registrado',val:fmt(totalGasto),sub:'precios actuales'},
+    {label:'Básicos',val:bas.length,sub:fmt(sum(bas.map(p=>p.precioActual)))},
+    {label:'Adicionales',val:adic.length,sub:fmt(sum(adic.map(p=>p.precioActual)))},
     {label:'Subieron de precio',val:productos.filter(p=>p.precioActual>p.precioAnterior).length,sub:'',color:'color:#a32d2d'},
     {label:'Bajaron de precio',val:productos.filter(p=>p.precioActual<p.precioAnterior).length,sub:'',color:'color:#0f6e56'},
   ].map(m=>`<div class="metric"><div class="metric-label">${m.label}</div><div class="metric-value" style="${m.color||''}">${m.val}</div>${m.sub?`<div class="metric-sub">${m.sub}</div>`:''}</div>`).join('');
   renderGrafContent();
 }
 
-function mkCanvas(id,h){return`<div style="position:relative;height:${h||220}px"><canvas id="${id}" role="img"></canvas></div>`;}
+function mkCanvas(id,h){return`<div style="position:relative;height:${h||220}px"><canvas id="${id}"></canvas></div>`;}
 
 function renderGrafContent(){
   destroyCharts();
   const el=document.getElementById('graf-content');
-  const mesesLabel=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  document.getElementById('date-filter-result').textContent=labelFiltro();
+
+  // Productos con compras en el período filtrado
+  const prodsFiltrados=productos.map(p=>({...p,histFiltrado:getHistorialFiltrado(p)})).filter(p=>p.histFiltrado.length>0);
+  const mode=document.getElementById('date-filter-mode').value;
 
   if(grafTab==='mensual'){
-    const todasFechas=productos.flatMap(p=>(p.historial||[]).map(h=>h.fecha.slice(0,7)));
+    // Agrupar por mes-año
+    const todasFechas=prodsFiltrados.flatMap(p=>p.histFiltrado.map(h=>h.fecha.slice(0,7)));
     const meses=[...new Set(todasFechas)].sort();
     const data=meses.map(ym=>{
       const[y,m]=ym.split('-');
-      return{label:mesesLabel[parseInt(m)-1]+' '+y,total:sum(productos.flatMap(p=>(p.historial||[]).filter(h=>h.fecha.startsWith(ym)).map(h=>h.precio)))};
+      return{label:MESES_L[parseInt(m)-1]+' '+y,total:sum(prodsFiltrados.flatMap(p=>p.histFiltrado.filter(h=>h.fecha.startsWith(ym)).map(h=>h.precio)))};
     });
-    el.innerHTML=`<div class="chart-card full"><div class="chart-title">Gasto mensual total (MXN)</div><div class="chart-sub">Suma de precios pagados por mes</div>${mkCanvas('c1',240)}</div>`;
+    el.innerHTML=`<div class="chart-card full"><div class="chart-title">Gasto mensual total (MXN)</div><div class="chart-sub">${labelFiltro()}</div>${mkCanvas('c1',240)}</div>`;
+    if(!data.length){el.innerHTML+='<p class="empty">Sin datos para este período.</p>';return;}
     activeCharts.push(new Chart(document.getElementById('c1'),{type:'bar',data:{labels:data.map(d=>d.label),datasets:[{data:data.map(d=>d.total),backgroundColor:'#1d9e75',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>'$'+v}},x:{ticks:{maxRotation:45}}}}}));
 
   }else if(grafTab==='categoria'){
-    const catData=CATS.map(c=>({cat:c,val:sum(productos.filter(p=>p.categoria===c).map(p=>p.precioActual))})).filter(d=>d.val>0);
-    el.innerHTML=`<div class="charts-grid">
-      <div class="chart-card"><div class="chart-title">Gasto por categoría</div><div class="chart-sub">Distribución porcentual</div>${mkCanvas('c2',240)}</div>
-      <div class="chart-card"><div class="chart-title">Gasto por categoría</div><div class="chart-sub">Monto en MXN</div>${mkCanvas('c3',240)}</div>
-    </div>`;
+    const catData=CATS.map(c=>({cat:c,val:sum(prodsFiltrados.filter(p=>p.categoria===c).flatMap(p=>p.histFiltrado.map(h=>h.precio)))})).filter(d=>d.val>0);
+    if(!catData.length){el.innerHTML='<p class="empty">Sin datos para este período.</p>';return;}
+    el.innerHTML=`<div class="charts-grid"><div class="chart-card"><div class="chart-title">Gasto por categoría</div><div class="chart-sub">${labelFiltro()}</div>${mkCanvas('c2',240)}</div><div class="chart-card"><div class="chart-title">Monto en MXN</div><div class="chart-sub">${labelFiltro()}</div>${mkCanvas('c3',240)}</div></div>`;
     activeCharts.push(new Chart(document.getElementById('c2'),{type:'doughnut',data:{labels:catData.map(d=>d.cat),datasets:[{data:catData.map(d=>d.val),backgroundColor:PALETTE}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}}));
     activeCharts.push(new Chart(document.getElementById('c3'),{type:'bar',data:{labels:catData.map(d=>d.cat),datasets:[{data:catData.map(d=>d.val),backgroundColor:PALETTE,borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>'$'+v}}}}}));
 
   }else if(grafTab==='tienda'){
-    const tiendas=[...new Set(productos.map(p=>p.tienda||p.lugar).filter(Boolean))];
-    const tData=tiendas.map(t=>({t,val:sum(productos.filter(p=>(p.tienda||p.lugar)===t).map(p=>p.precioActual))})).sort((a,b)=>b.val-a.val);
-    el.innerHTML=`<div class="charts-grid">
-      <div class="chart-card"><div class="chart-title">Gasto por tienda</div><div class="chart-sub">Distribución porcentual</div>${mkCanvas('c4',240)}</div>
-      <div class="chart-card"><div class="chart-title">Gasto por tienda</div><div class="chart-sub">Monto en MXN</div>${mkCanvas('c5',240)}</div>
-    </div>`;
+    const tiendas=[...new Set(prodsFiltrados.map(p=>p.tienda||p.lugar))];
+    const tData=tiendas.map(t=>({t,val:sum(prodsFiltrados.filter(p=>(p.tienda||p.lugar)===t).flatMap(p=>p.histFiltrado.map(h=>h.precio)))})).sort((a,b)=>b.val-a.val);
+    if(!tData.length){el.innerHTML='<p class="empty">Sin datos para este período.</p>';return;}
+    el.innerHTML=`<div class="charts-grid"><div class="chart-card"><div class="chart-title">Gasto por tienda</div><div class="chart-sub">${labelFiltro()}</div>${mkCanvas('c4',240)}</div><div class="chart-card"><div class="chart-title">Monto en MXN</div><div class="chart-sub">${labelFiltro()}</div>${mkCanvas('c5',240)}</div></div>`;
     activeCharts.push(new Chart(document.getElementById('c4'),{type:'doughnut',data:{labels:tData.map(d=>d.t),datasets:[{data:tData.map(d=>d.val),backgroundColor:PALETTE}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}}}}));
     activeCharts.push(new Chart(document.getElementById('c5'),{type:'bar',data:{labels:tData.map(d=>d.t),datasets:[{data:tData.map(d=>d.val),backgroundColor:PALETTE,borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>'$'+v}}}}}));
 
   }else if(grafTab==='basicos'){
-    const bVal=sum(productos.filter(p=>p.tipo==='Básico').map(p=>p.precioActual));
-    const aVal=sum(productos.filter(p=>p.tipo==='Adicional').map(p=>p.precioActual));
-    el.innerHTML=`<div class="charts-grid">
-      <div class="chart-card"><div class="chart-title">Básicos vs Adicionales</div><div class="chart-sub">Proporción del gasto total</div>${mkCanvas('c6',260)}</div>
-      <div class="chart-card"><div class="chart-title">Monto en MXN</div><div class="chart-sub">Gasto acumulado por tipo</div>${mkCanvas('c7',260)}</div>
-    </div>`;
+    const bVal=sum(prodsFiltrados.filter(p=>p.tipo==='Básico').flatMap(p=>p.histFiltrado.map(h=>h.precio)));
+    const aVal=sum(prodsFiltrados.filter(p=>p.tipo==='Adicional').flatMap(p=>p.histFiltrado.map(h=>h.precio)));
+    if(!bVal&&!aVal){el.innerHTML='<p class="empty">Sin datos para este período.</p>';return;}
+    el.innerHTML=`<div class="charts-grid"><div class="chart-card"><div class="chart-title">Básicos vs Adicionales</div><div class="chart-sub">${labelFiltro()}</div>${mkCanvas('c6',260)}</div><div class="chart-card"><div class="chart-title">Monto en MXN</div><div class="chart-sub">${labelFiltro()}</div>${mkCanvas('c7',260)}</div></div>`;
     activeCharts.push(new Chart(document.getElementById('c6'),{type:'pie',data:{labels:['Básicos','Adicionales'],datasets:[{data:[bVal,aVal],backgroundColor:['#1d9e75','#e2804a']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}}));
     activeCharts.push(new Chart(document.getElementById('c7'),{type:'bar',data:{labels:['Básicos','Adicionales'],datasets:[{data:[bVal,aVal],backgroundColor:['#1d9e75','#e2804a'],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>'$'+v}}}}}));
 
   }else if(grafTab==='top10'){
-    const top=productos.slice().sort((a,b)=>b.precioActual-a.precioActual).slice(0,10);
+    const top=prodsFiltrados.map(p=>({nombre:p.nombre,val:sum(p.histFiltrado.map(h=>h.precio))})).sort((a,b)=>b.val-a.val).slice(0,10);
+    if(!top.length){el.innerHTML='<p class="empty">Sin datos para este período.</p>';return;}
     const h=Math.max(260,top.length*44+60);
-    el.innerHTML=`<div class="chart-card full"><div class="chart-title">Top 10 productos más caros</div><div class="chart-sub">Precio actual en MXN</div><div style="position:relative;height:${h}px"><canvas id="c8" role="img"></canvas></div></div>`;
-    activeCharts.push(new Chart(document.getElementById('c8'),{type:'bar',data:{labels:top.map(p=>p.nombre.length>22?p.nombre.slice(0,22)+'…':p.nombre),datasets:[{data:top.map(p=>p.precioActual),backgroundColor:PALETTE,borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>'$'+v}}}}}));
+    el.innerHTML=`<div class="chart-card full"><div class="chart-title">Top 10 productos más caros</div><div class="chart-sub">${labelFiltro()}</div><div style="position:relative;height:${h}px"><canvas id="c8"></canvas></div></div>`;
+    activeCharts.push(new Chart(document.getElementById('c8'),{type:'bar',data:{labels:top.map(p=>p.nombre.length>22?p.nombre.slice(0,22)+'…':p.nombre),datasets:[{data:top.map(p=>p.val),backgroundColor:PALETTE,borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>'$'+v}}}}}));
 
   }else if(grafTab==='variacion'){
     const variacion=productos.map(p=>({nombre:p.nombre.length>18?p.nombre.slice(0,18)+'…':p.nombre,v:parseFloat(((p.precioActual-p.precioAnterior)/(p.precioAnterior||1)*100).toFixed(1)),color:p.precioActual>p.precioAnterior?'#e24b4a':'#1d9e75'})).sort((a,b)=>Math.abs(b.v)-Math.abs(a.v)).slice(0,10);
     const h=Math.max(260,variacion.length*44+60);
-    el.innerHTML=`<div class="chart-card full"><div class="chart-title">Variación de precios</div><div class="chart-sub">Cambio % respecto a la compra anterior</div><div style="position:relative;height:${h}px"><canvas id="c9" role="img"></canvas></div>
-      <div class="legend"><span><span class="legend-dot" style="background:#e24b4a"></span>Subió</span><span><span class="legend-dot" style="background:#1d9e75"></span>Bajó o igual</span></div>
-    </div>`;
+    el.innerHTML=`<div class="chart-card full"><div class="chart-title">Variación de precios</div><div class="chart-sub">Cambio % respecto a la compra anterior</div><div style="position:relative;height:${h}px"><canvas id="c9"></canvas></div><div class="legend"><span><span class="legend-dot" style="background:#e24b4a"></span>Subió</span><span><span class="legend-dot" style="background:#1d9e75"></span>Bajó o igual</span></div></div>`;
     activeCharts.push(new Chart(document.getElementById('c9'),{type:'bar',data:{labels:variacion.map(d=>d.nombre),datasets:[{data:variacion.map(d=>d.v),backgroundColor:variacion.map(d=>d.color),borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>v+'%'}}}}}));
 
   }else if(grafTab==='historiales'){
     const conHist=productos.filter(p=>p.historial&&p.historial.length>=2);
-    if(!conHist.length){el.innerHTML='<p class="empty" style="padding:20px">Agrega al menos 2 compras a un producto para ver su historial.</p>';return;}
-    el.innerHTML=conHist.map((p,i)=>`<div class="chart-card full" style="margin-bottom:14px"><div class="chart-title">${p.nombre}</div><div class="chart-sub">${p.tienda||p.lugar} · ${p.categoria}</div>${mkCanvas('ch'+p.id,130)}</div>`).join('');
+    if(!conHist.length){el.innerHTML='<p class="empty">Agrega al menos 2 compras a un producto para ver su historial.</p>';return;}
+    el.innerHTML=conHist.map(p=>`<div class="chart-card full" style="margin-bottom:14px"><div class="chart-title">${p.nombre}</div><div class="chart-sub">${p.tienda||p.lugar} · ${p.categoria}</div>${mkCanvas('ch'+p.id,130)}</div>`).join('');
     conHist.forEach(p=>{
       const hist=[...p.historial].sort((a,b)=>a.fecha.localeCompare(b.fecha));
       activeCharts.push(new Chart(document.getElementById('ch'+p.id),{type:'line',data:{labels:hist.map(h=>fmtFecha(h.fecha)),datasets:[{data:hist.map(h=>h.precio),borderColor:'#378add',backgroundColor:'rgba(55,138,221,0.08)',tension:0.3,pointRadius:4,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>'$'+v}},x:{ticks:{maxRotation:45}}}}}));
@@ -655,7 +797,16 @@ function renderGrafContent(){
   }
 }
 
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2500);}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2800);}
+
+// Actualizar desglose al cambiar unidades o cantidad
+document.addEventListener('DOMContentLoaded',()=>{
+  ['f-unidades','f-cantidad','f-unidad'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.addEventListener('input',calcularDesglose);
+    if(el&&el.tagName==='SELECT')el.addEventListener('change',calcularDesglose);
+  });
+});
 
 cargar();
 renderInventario();
